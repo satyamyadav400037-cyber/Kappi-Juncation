@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="theme-color" content="#17100d">
+  <meta name="description" content="Kaapi Junction — South Indian filter craft, re-tuned for curious minds.">
+  <title>Kaapi Junction — Coffee with a point of view</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ENTRY PRELOADER ANIMATION -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-cup-wrap">
+        <div class="preloader-steam steam-1"></div>
+        <div class="preloader-steam steam-2"></div>
+        <div class="preloader-cup">
+          <div class="preloader-liquid" id="preloaderLiquid"></div>
+          <span class="preloader-logo">KJ</span>
+        </div>
+        <div class="preloader-saucer"></div>
+      </div>
+      <div class="preloader-text">
+        <span class="preloader-brand">Kaapi Junction</span>
+        <div class="preloader-counter-wrap">
+          <span class="preloader-counter" id="preloaderCounter">0%</span>
+          <span class="preloader-status">Brewing the experience...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-shell">
+    <!-- SVG Grain Noise Overlay -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Header Navigation -->
+    <header class="site-nav" id="siteNav">
+      <a href="#top" class="wordmark" aria-label="Kaapi Junction home">
+        <span class="wordmark-mark">KJ</span>
+        <span class="wordmark-name">Kaapi<br>Junction</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#menu">Menu <span>01</span></a>
+        <a href="#atmosphere">Craft <span>02</span></a>
+        <a href="#method">Method <span>03</span></a>
+        <a href="#visit">Visit <span>04</span></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-order" id="orderNavBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span>Order</span>
+          <b id="cartCountBadge" style="display:none">0</b>
+        </button>
+        <button class="menu-trigger" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" aria-label="Jump to menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="hero-gridline hero-gridline-left"></div>
+        <div class="hero-gridline hero-gridline-right"></div>
+
+        <div class="hero-copy">
+          <div class="eyebrow reveal-text">
+            <span class="eyebrow-dot"></span> Chennai · Bengaluru · everywhere
+          </div>
+          <h1 class="hero-title reveal-text delay-1">
+            Coffee<br>with a <em>point</em><br>of view<span class="title-dot">.</span>
+          </h1>
+          <p class="hero-intro reveal-text delay-2">
+            South Indian filter craft, re-tuned for curious minds. A neighbourhood coffee lab built around slow mornings, bright ideas, and one more cup.
+          </p>
+          <div class="hero-actions reveal-text delay-3">
+            <button class="button button-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+              Explore the menu 
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </button>
+            <button class="text-link" onclick="document.getElementById('method').scrollIntoView({behavior:'smooth'})">
+              Our method 
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+            </button>
+          </div>
+          <div class="hero-meta reveal-text delay-3">
+            <span>Open daily</span>
+            <span class="meta-line"></span>
+            <span>07:30 — 22:30</span>
+          </div>
+        </div>
+
+        <!-- 3D INTERACTIVE CUP STAGE -->
+        <div class="hero-object-wrap" aria-label="Interactive 3D-style coffee cup illustration">
+          <div class="orbit-label orbit-label-top">
+            The daily ritual <span>✳</span>
+          </div>
+          <div class="hero-object" id="heroCupObject">
+            <div class="object-shadow"></div>
+            <div class="coffee-cup">
+              <div class="cup-steam steam-one"></div>
+              <div class="cup-steam steam-two"></div>
+              <div class="cup-steam steam-three"></div>
+              <div class="cup-top">
+                <div class="coffee-surface">
+                  <span></span>
+                </div>
+              </div>
+              <div class="cup-body">
+                <div class="cup-highlight"></div>
+              </div>
+              <div class="cup-handle"></div>
+              <div class="cup-saucer"></div>
+            </div>
+            <div class="coffee-bean bean-one"></div>
+            <div class="coffee-bean bean-two"></div>
+            <div class="coffee-bean bean-three"></div>
+            <div class="coffee-bean bean-four"></div>
+          </div>
+          <div class="orbit-label orbit-label-bottom">
+            <span>01</span> / 03 <i>Drag to orbit</i>
+          </div>
+        </div>
+
+        <div class="hero-side-note">
+          <span>Filter coffee</span>
+          <span>since 2014</span>
+        </div>
+
+        <button class="scroll-cue" onclick="document.getElementById('intro').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to introduction">
+          <span>Scroll to sip</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+        </button>
+      </section>
+
+      <!-- SECTION 01: INTRO SLIDER -->
+      <section class="intro-section" id="intro">
+        <div class="intro-slider-container" id="introSlider">
+          <div class="intro-slides-track" id="introSlidesTrack">
+            
+            <!-- SLIDE 1 -->
+            <div class="intro-slide active" data-slide="0">
+              <div class="intro-slide-left">
+                <div class="section-index reveal-text">01 <span>/</span> 04</div>
+                <div class="intro-heading reveal-text delay-1">
+                  <p class="eyebrow dark-eyebrow">
+                    <span class="eyebrow-dot"></span> The short version
+                  </p>
+                  <h2>Not just coffee.<br><em>A small reset.</em></h2>
+                </div>
+              </div>
+              <div class="intro-copy reveal-text delay-2">
+                <p>We believe a good cup can change the temperature of a whole day. So we obsess over the little things: roasted beans, warm steel tumblers, music that knows when to hush.</p>
+                <a href="#visit" class="circle-link" aria-label="Visit Kaapi Junction">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="intro-slide" data-slide="1">
+              <div class="intro-slide-left">
+                <div class="section-index">02 <span>/</span> 04</div>
+                <div class="intro-heading">
+                  <p class="eyebrow dark-eyebrow">
+                    <span class="eyebrow-dot"></span> The brass ritual
+                  </p>
+                  <h2>Poured high.<br><em>Frothy & pure.</em></h2>
+                </div>
+              </div>
+              <div class="intro-copy">
+                <p>Aerated in traditional brass davaras to unlock silky micro-foam. The gentle sound of hot kaapi cascading between cup and saucer is our daily morning symphony.</p>
+                <a href="#method" class="circle-link" aria-label="Our method">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="intro-slide" data-slide="2">
+              <div class="intro-slide-left">
+                <div class="section-index">03 <span>/</span> 04</div>
+                <div class="intro-heading">
+                  <p class="eyebrow dark-eyebrow">
+                    <span class="eyebrow-dot"></span> The roasted bean
+                  </p>
+                  <h2>High altitude.<br><em>Shade grown.</em></h2>
+                </div>
+              </div>
+              <div class="intro-copy">
+                <p>Sourced from multigenerational family estates in the misty slopes of Coorg and Chikmagalur. Dark roast sweetness blended with just the right touch of chicory.</p>
+                <a href="#menu" class="circle-link" aria-label="Explore menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- SLIDE 4 -->
+            <div class="intro-slide" data-slide="3">
+              <div class="intro-slide-left">
+                <div class="section-index">04 <span>/</span> 04</div>
+                <div class="intro-heading">
+                  <p class="eyebrow dark-eyebrow">
+                    <span class="eyebrow-dot"></span> The slow space
+                  </p>
+                  <h2>No rush.<br><em>Just presence.</em></h2>
+                </div>
+              </div>
+              <div class="intro-copy">
+                <p>Designed as an oasis from urban noise. Pull up a wooden chair, feel the warmth of hand-thrown ceramic and polished steel, and let time pause for a moment.</p>
+                <a href="#visit" class="circle-link" aria-label="Visit us">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SLIDER CONTROLS BAR -->
+          <div class="intro-slider-controls">
+            <div class="intro-slider-dots" id="introSliderDots">
+              <button class="dot-btn active" data-index="0" aria-label="Slide 1"><span class="dot-progress"></span></button>
+              <button class="dot-btn" data-index="1" aria-label="Slide 2"><span class="dot-progress"></span></button>
+              <button class="dot-btn" data-index="2" aria-label="Slide 3"><span class="dot-progress"></span></button>
+              <button class="dot-btn" data-index="3" aria-label="Slide 4"><span class="dot-progress"></span></button>
+            </div>
+            <div class="intro-slider-arrows">
+              <button class="slider-arrow prev-slide-btn" id="introPrevBtn" aria-label="Previous story">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <span class="slider-counter-display" id="introCounterDisplay">01 / 04</span>
+              <button class="slider-arrow next-slide-btn" id="introNextBtn" aria-label="Next story">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 02: MENU -->
+      <section class="menu-section" id="menu">
+        <div class="section-topline reveal-text">
+          <div>
+            <p class="eyebrow light-eyebrow">
+              <span class="eyebrow-dot"></span> The counter
+            </p>
+            <h2>Today's orbit</h2>
+          </div>
+          <span class="section-caption">Small batch / big feeling</span>
+        </div>
+
+        <div class="category-tabs reveal-text delay-1" id="categoryTabs" role="tablist" aria-label="Menu categories">
+          <button class="active" data-category="All">All</button>
+          <button data-category="Filter">Filter</button>
+          <button data-category="Espresso">Espresso</button>
+          <button data-category="Cold">Cold</button>
+          <button data-category="Pastry">Pastry</button>
+        </div>
+
+        <!-- MENU PRODUCT GRID -->
+        <div class="menu-grid" id="menuGrid"></div>
+
+        <div class="menu-footer reveal-text delay-2">
+          <span>Everything is made to order.</span>
+          <button onclick="showToast('Full menu coming soon — ask us at the counter.')">
+            View full menu 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 03: CINEMATIC VIDEO SHOWCASE -->
+      <section class="video-showcase-section" id="atmosphere">
+        <div class="video-container reveal-text">
+          <!-- Background HTML5 Video -->
+          <video 
+            id="craftVideo" 
+            class="video-element" 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            preload="auto">
+            <source src="202910-919288798.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+
+          <!-- Dark Gradient Overlay -->
+          <div class="video-overlay"></div>
+
+          <!-- Content overlay card -->
+          <div class="video-content-wrap">
+            <div class="video-badge">
+              <span class="video-pulse"></span> Craft in motion
+            </div>
+            <h2 class="video-title">Ritual in motion.<br><em>Feel the steam & pour.</em></h2>
+            <p class="video-subtitle">Watch our baristas drip, froth, and stretch traditional filter kaapi in real-time. Slow craft captured in full warmth.</p>
+            
+            <div class="video-stats-grid">
+              <div class="stat-box">
+                <strong>92°C</strong>
+                <span>Drip Temp</span>
+              </div>
+              <div class="stat-box">
+                <strong>1:2.5</strong>
+                <span>Decoction Ratio</span>
+              </div>
+              <div class="stat-box">
+                <strong>100%</strong>
+                <span>Shade Grown</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Floating Controls Bar -->
+          <div class="video-controls-bar">
+            <button class="video-ctrl-btn" id="videoToggleBtn" aria-label="Pause video">
+              <svg id="videoPauseIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <svg id="videoPlayIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span id="videoToggleText">Pause</span>
+            </button>
+
+            <button class="video-ctrl-btn" id="videoMuteBtn" aria-label="Unmute audio">
+              <svg id="videoMutedIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+              <svg id="videoSoundIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <span id="videoMuteText">Sound Off</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 03: METHOD -->
+      <section class="method-section" id="method">
+        <div class="method-heading reveal-text">
+          <div class="section-index brass-index">02 <span>/</span> 04</div>
+          <p class="eyebrow light-eyebrow">
+            <span class="eyebrow-dot"></span> How we do it
+          </p>
+          <h2>Ritual is<br><em>the recipe.</em></h2>
+          <p class="method-lede">The best things are made slowly. Our bar works in three movements: source with intent, roast with restraint, serve with warmth.</p>
+        </div>
+
+        <div class="method-list">
+          <article class="method-item">
+            <span>01</span>
+            <div>
+              <h3>Source close</h3>
+              <p>Estate beans from the Nilgiris and Coorg, chosen for sweetness, not noise.</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </article>
+          <article class="method-item">
+            <span>02</span>
+            <div>
+              <h3>Roast light</h3>
+              <p>Small roasts, held just long enough to keep the fruit and the memory.</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </article>
+          <article class="method-item">
+            <span>03</span>
+            <div>
+              <h3>Pour slow</h3>
+              <p>Every cup is finished by hand, because your two minutes deserve our full attention.</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 04: VISIT -->
+      <section class="visit-section" id="visit">
+        <div class="visit-image reveal-text">
+          <div class="visit-image-copy">
+            <span>Come as you are</span>
+            <strong>Stay for<br><em>the second.</em></strong>
+          </div>
+        </div>
+        <div class="visit-content reveal-text delay-1">
+          <div class="section-index">03 <span>/</span> 04</div>
+          <p class="eyebrow dark-eyebrow">
+            <span class="eyebrow-dot"></span> Find us
+          </p>
+          <h2>Your table<br><em>is waiting.</em></h2>
+          <div class="visit-details">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+              <p>24, Venkatanarayana Road<br>T. Nagar, Chennai 600017</p>
+            </div>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16.5 12"/></svg>
+              <p>Mon — Sun<br>07:30 — 22:30</p>
+            </div>
+          </div>
+          <button class="button button-dark" onclick="showToast('Opening directions in a new tab soon.')">
+            Get directions 
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 05: CLOSING NEWSLETTER -->
+      <section class="closing-section">
+        <div class="closing-copy reveal-text">
+          <p class="eyebrow light-eyebrow">
+            <span class="eyebrow-dot"></span> Stay in the loop
+          </p>
+          <h2>Good coffee.<br><em>Good company.</em></h2>
+          <p>New beans, pop-ups, and the occasional late-night idea. No spam, just warm notes from the counter.</p>
+          <form id="newsletterForm">
+            <input aria-label="Email address" type="email" required placeholder="your@email.com">
+            <button aria-label="Subscribe" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </button>
+          </form>
+        </div>
+        <div class="closing-mark">
+          <span>KJ</span>
+          <div>Kaapi<br>Junction</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span>© 2026 Kaapi Junction</span>
+      <span class="footer-center">Brewed for the in-between</span>
+      <a href="#top">Back to top <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+      <a href="#top" class="social-link" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+      </a>
+    </footer>
+
+    <!-- CART OFF-CANVAS DRAWER -->
+    <div class="drawer-backdrop" id="drawerBackdrop" style="display:none">
+      <aside class="cart-drawer">
+        <div class="drawer-head">
+          <div>
+            <span>Your order</span>
+            <strong id="drawerCountHead">Nothing yet</strong>
+          </div>
+          <button id="closeDrawerBtn" aria-label="Close order">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+
+        <div id="cartBody"></div>
+      </aside>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer"></div>
+  </div>
+
+</body>
+</html>
