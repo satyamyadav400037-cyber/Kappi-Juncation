@@ -10,6 +10,8 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <!-- TOP SCROLL PROGRESS INDICATOR BAR -->
+  <div class="scroll-progress-bar" id="scrollProgress"></div>
 
   <!-- ENTRY PRELOADER ANIMATION -->
   <div class="preloader" id="preloader">
@@ -46,18 +48,34 @@
 
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="#menu">Menu <span>01</span></a>
-        <a href="#atmosphere">Craft <span>02</span></a>
-        <a href="#method">Method <span>03</span></a>
-        <a href="#visit">Visit <span>04</span></a>
+        <a href="#about">Story <span>02</span></a>
+        <a href="#atmosphere">Craft <span>03</span></a>
+        <a href="#offers">Deals <span>04</span></a>
+        <a href="#testimonials">Reviews <span>05</span></a>
+        <a href="#visit">Visit <span>06</span></a>
       </nav>
 
       <div class="nav-actions">
-        <button class="nav-order" id="orderNavBtn">
+        <!-- Wishlist Button -->
+        <button class="nav-icon-btn" id="wishlistNavBtn" aria-label="View saved wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <b id="favCountBadge" style="display:none">0</b>
+        </button>
+
+        <!-- Search Trigger Button -->
+        <button class="nav-icon-btn" id="searchOpenBtn" aria-label="Search coffee menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+
+        <!-- Order / Cart Button -->
+        <button class="nav-order" id="orderNavBtn" aria-label="View shopping cart">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span>Order</span>
           <b id="cartCountBadge" style="display:none">0</b>
         </button>
-        <button class="menu-trigger" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" aria-label="Jump to menu">
+
+        <!-- Mobile Menu Trigger -->
+        <button class="menu-trigger" id="mobileMenuBtn" aria-label="Open navigation menu">
           <span></span>
           <span></span>
         </button>
@@ -74,13 +92,15 @@
           <div class="eyebrow reveal-text">
             <span class="eyebrow-dot"></span> Chennai · Bengaluru · everywhere
           </div>
-          <h1 class="hero-title reveal-text delay-1">
-            Coffee<br>with a <em>point</em><br>of view<span class="title-dot">.</span>
+          <h1 class="hero-title">
+            <span class="text-mask-wrapper"><span class="text-mask-inner">Coffee</span></span><br>
+            <span class="text-mask-wrapper"><span class="text-mask-inner">with a <em>point</em></span></span><br>
+            <span class="text-mask-wrapper"><span class="text-mask-inner">of view<span class="title-dot">.</span></span></span>
           </h1>
-          <p class="hero-intro reveal-text delay-2">
+          <p class="hero-intro reveal-up delay-1">
             South Indian filter craft, re-tuned for curious minds. A neighbourhood coffee lab built around slow mornings, bright ideas, and one more cup.
           </p>
-          <div class="hero-actions reveal-text delay-3">
+          <div class="hero-actions reveal-scale delay-2">
             <button class="button button-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
               Explore the menu 
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
@@ -90,7 +110,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
             </button>
           </div>
-          <div class="hero-meta reveal-text delay-3">
+          <div class="hero-meta reveal-up delay-3">
             <span>Open daily</span>
             <span class="meta-line"></span>
             <span>07:30 — 22:30</span>
@@ -258,10 +278,14 @@
 
         <div class="category-tabs reveal-text delay-1" id="categoryTabs" role="tablist" aria-label="Menu categories">
           <button class="active" data-category="All">All</button>
-          <button data-category="Filter">Filter</button>
+          <button data-category="Filter">Filter Kaapi</button>
           <button data-category="Espresso">Espresso</button>
-          <button data-category="Cold">Cold</button>
+          <button data-category="Cappuccino">Cappuccino</button>
+          <button data-category="Latte">Latte</button>
+          <button data-category="Cold">Cold Coffee</button>
           <button data-category="Pastry">Pastry</button>
+          <button data-category="Desserts">Desserts</button>
+          <button data-category="Snacks">Snacks</button>
         </div>
 
         <!-- MENU PRODUCT GRID -->
@@ -273,6 +297,34 @@
             View full menu 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </button>
+        </div>
+      </section>
+
+      <!-- SECTION 02.5: ABOUT BRAND & ANIMATED COUNTERS -->
+      <section class="about-stats-section" id="about">
+        <div class="section-topline reveal-text">
+          <div>
+            <p class="eyebrow light-eyebrow">
+              <span class="eyebrow-dot"></span> Our Heritage
+            </p>
+            <h2>Roots in South India.<br><em>Craft for today.</em></h2>
+          </div>
+          <span class="section-caption">Est. 2014 / 100% Single Estate</span>
+        </div>
+
+        <div class="stats-grid reveal-text delay-1">
+          <div class="stat-card">
+            <div class="stat-number" data-target="10" id="statBlends">0+</div>
+            <div class="stat-label">Artisanal Blends</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="50" id="statCustomers">0K+</div>
+            <div class="stat-label">Happy Coffee Lovers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="15" id="statYears">0+</div>
+            <div class="stat-label">Years of Craft</div>
+          </div>
         </div>
       </section>
 
@@ -336,7 +388,41 @@
         </div>
       </section>
 
-      <!-- SECTION 03: METHOD -->
+      <!-- SECTION 03.5: SPECIAL PROMOTIONAL OFFERS -->
+      <section class="offers-section" id="offers">
+        <div class="offer-card-banner reveal-text">
+          <div class="offer-info">
+            <span class="offer-badge">Limited Time Offer</span>
+            <h2>Morning Ritual Deal.<br><em>Kaapi + Ghee Bun combo.</em></h2>
+            <p style="color: rgba(240, 232, 220, 0.75); margin-top: 10px; font-size: 0.92rem;">Enjoy 25% off our signature Filter Kaapi 02 paired with fresh warm Ghee Bun before 11:00 AM.</p>
+            
+            <div class="countdown-timer" id="offerTimer">
+              <div class="timer-box">
+                <span class="timer-val" id="timerHours">04</span>
+                <span class="timer-unit">Hours</span>
+              </div>
+              <div class="timer-box">
+                <span class="timer-val" id="timerMins">32</span>
+                <span class="timer-unit">Mins</span>
+              </div>
+              <div class="timer-box">
+                <span class="timer-val" id="timerSecs">48</span>
+                <span class="timer-unit">Secs</span>
+              </div>
+            </div>
+
+            <button class="button button-primary" id="claimOfferBtn">
+              Claim Morning Combo ₹220 
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="offer-visual" style="text-align: center;">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=85" alt="Morning Kaapi Offer" style="width: 100%; max-width: 320px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 04: METHOD -->
       <section class="method-section" id="method">
         <div class="method-heading reveal-text">
           <div class="section-index brass-index">02 <span>/</span> 04</div>
@@ -375,7 +461,46 @@
         </div>
       </section>
 
-      <!-- SECTION 04: VISIT -->
+      <!-- SECTION 04.5: TESTIMONIALS REVIEWS CAROUSEL -->
+      <section class="testimonials-section" id="testimonials">
+        <div class="section-topline reveal-text" style="justify-content: center; text-align: center;">
+          <div>
+            <p class="eyebrow light-eyebrow" style="justify-content: center;">
+              <span class="eyebrow-dot"></span> Customer Notes
+            </p>
+            <h2>Words from our counter</h2>
+          </div>
+        </div>
+
+        <div class="testimonial-carousel reveal-text delay-1" id="testimonialCarousel">
+          <div class="testimonial-card active">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">"The Filter Kaapi 02 in the brass davara took me right back to Mysore mornings. Hands down the smoothest foam in Chennai."</p>
+            <div class="testimonial-author">— Ananya R., Regular Visitor</div>
+          </div>
+          <div class="testimonial-card">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">"The Rose Tonic and Cacao Cloud are absolute game changers. Incredible atmosphere and meticulous attention to detail."</p>
+            <div class="testimonial-author">— Vikram Seth, Coffee Connoisseur</div>
+          </div>
+          <div class="testimonial-card">
+            <div class="star-rating">★★★★★</div>
+            <p class="testimonial-text">"Best workspace coffee in T. Nagar. Warm lighting, peaceful acoustics, and the Ghee Bun is heavenly!"</p>
+            <div class="testimonial-author">— Priya Sundaram, Architect</div>
+          </div>
+
+          <div class="testimonial-nav">
+            <button class="slider-arrow" id="testiPrevBtn" aria-label="Previous review">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="slider-arrow" id="testiNextBtn" aria-label="Next review">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 05: VISIT & CONTACT FORM -->
       <section class="visit-section" id="visit">
         <div class="visit-image reveal-text">
           <div class="visit-image-copy">
@@ -399,14 +524,14 @@
               <p>Mon — Sun<br>07:30 — 22:30</p>
             </div>
           </div>
-          <button class="button button-dark" onclick="showToast('Opening directions in a new tab soon.')">
+          <button class="button button-dark" onclick="showToast('Opening Google Maps location...')">
             Get directions 
             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
           </button>
         </div>
       </section>
 
-      <!-- SECTION 05: CLOSING NEWSLETTER -->
+      <!-- SECTION 06: CLOSING NEWSLETTER -->
       <section class="closing-section">
         <div class="closing-copy reveal-text">
           <p class="eyebrow light-eyebrow">
@@ -455,9 +580,95 @@
       </aside>
     </div>
 
+    <!-- WISHLIST OFF-CANVAS DRAWER -->
+    <div class="drawer-backdrop" id="wishlistBackdrop" style="display:none">
+      <aside class="cart-drawer">
+        <div class="drawer-head">
+          <div>
+            <span>Your Wishlist ❤️</span>
+            <strong id="wishlistCountHead">0 saved items</strong>
+          </div>
+          <button id="closeWishlistBtn" aria-label="Close wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+
+        <div id="wishlistBody"></div>
+      </aside>
+    </div>
+
+    <!-- LIVE PRODUCT SEARCH MODAL -->
+    <div class="search-modal-backdrop" id="searchModal" style="display:none">
+      <div class="search-container">
+        <div class="search-input-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="searchInput" placeholder="Search coffee, espresso, ingredients..." autocomplete="off">
+          <button class="search-clear-btn" id="searchCloseBtn" aria-label="Close search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+        <div class="search-results-grid" id="searchResultsGrid"></div>
+      </div>
+    </div>
+
+    <!-- PRODUCT DETAILS MODAL -->
+    <div class="modal-backdrop" id="productModal" style="display:none">
+      <div class="product-modal">
+        <button class="modal-close-btn" id="productModalClose" aria-label="Close modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div class="modal-image-wrap" id="modalImage"></div>
+        <div class="modal-info">
+          <div>
+            <span class="modal-category" id="modalCategory">Category</span>
+            <h3 class="modal-title" id="modalTitle">Product Title</h3>
+            <p class="modal-desc" id="modalDesc">Product description goes here.</p>
+            <div class="modal-ingredients">
+              <h4>Craft & Ingredients</h4>
+              <p id="modalIngredients">Single origin coffee, fresh milk, brass aerated.</p>
+            </div>
+          </div>
+          <div class="modal-action-row">
+            <div>
+              <span style="font-family:var(--mono); font-size:0.6rem; color:var(--amber-dark); text-transform:uppercase; display:block;">Price</span>
+              <strong style="font-family:var(--mono); font-size:1.4rem;" id="modalPrice">₹160</strong>
+            </div>
+            <div class="qty-counter">
+              <button class="qty-btn" id="modalQtyMinus">-</button>
+              <span class="qty-val" id="modalQtyVal">1</span>
+              <button class="qty-btn" id="modalQtyPlus">+</button>
+            </div>
+            <button class="button button-primary" id="modalAddToCartBtn">
+              Add to Order ✦
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div class="mobile-menu-backdrop" id="mobileNavOverlay" style="display:none">
+      <button class="mobile-menu-close" id="mobileNavClose" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="mobile-menu-links">
+        <a href="#menu" class="mobile-nav-link">Menu</a>
+        <a href="#about" class="mobile-nav-link">Story</a>
+        <a href="#atmosphere" class="mobile-nav-link">Craft</a>
+        <a href="#offers" class="mobile-nav-link">Deals</a>
+        <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+        <a href="#visit" class="mobile-nav-link">Visit</a>
+      </div>
+    </div>
+
     <!-- TOAST CONTAINER -->
     <div id="toastContainer"></div>
   </div>
+
+  <!-- FLOATING SCROLL TO TOP BUTTON -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
 
 </body>
 </html>
